@@ -1,14 +1,5 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "rules": {
-    "@typescript-eslint/no-explicit-any": "error",
-    "@next/next/no-img-element": "warn",
-    "@typescript-eslint/no-empty-interface": "error"
-  }
+  "extends": ["next/core-web-vitals", "next/typescript"]
 }
+
+
