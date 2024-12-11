@@ -1,101 +1,108 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState } from "react"
+import SidebarNav from "@/components/sidebar-nav"
+import QuickStats from "@/components/quick-stats"
+import SyllabusAnalysis from "@/components/syllabus-analysis"
+import QuestionAnalysis from "@/components/question-analysis"
+import { Button } from "@/components/ui/button"
+import { UpdateScoresDialog } from "@/components/update-scores-dialog"
+import UserProfile from "@/components/user-profile"
+import { ComparisonGraph } from "@/components/comparision-graph"
+
+export default function Page() {
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [scores, setScores] = useState({
+    rank: 1,
+    percentile: 30,
+    currentScore: 10,
+  })
+
+  const handleUpdateScores = (newScores: {
+    rank: number
+    percentile: number
+    currentScore: number
+  }) => {
+    setScores(newScores)
+    setDialogOpen(false)
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-50">
+      {/* Top Navigation  */}
+      <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b z-50 flex items-center justify-between px-8">
+        <div className="font-bold text-2xl flex items-center gap-2">
+          <span className="text-2xl">|||</span> WhatBytes
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <UserProfile
+          name="Rahil Siddique"
+          image="https://github.com/shadcn.png"
+        />
+      </header>
+
+      {/* Main Layout */}
+      <div className="flex flex-col md:flex-row pt-16">
+        <SidebarNav />
+        
+        {/* Main Content */}
+        <main className="flex-1 md:ml-64">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr,440px] gap-6 p-6">
+            {/* Left Column (Main Content) */}
+            <div>
+              <h1 className="text-xl font-medium text-gray-700 mb-6">Skill Test</h1>
+              
+              {/* HTML Test Header */}
+              <div className="bg-white rounded-lg border p-4 mb-6 flex flex-wrap items-center gap-4">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                  alt="HTML5"
+                  className="h-12 w-12"
+                />
+                <div className="flex-1">
+                  <h2 className="text-xl font-semibold">
+                    Hyper Text Markup Language
+                  </h2>
+                  
+                  <p className="text-sm text-gray-500">
+                    Questions: 08 | Duration: 15 mins | Submitted on 5 June 2021
+                  </p>
+                </div>
+                <Button 
+                  onClick={() => setDialogOpen(true)}
+                  className="bg-[#1E3A8A] hover:bg-[#1E3A8A]/90"
+                >
+                  Update
+                </Button>
+              </div>
+
+              {/* Quick Stats */}
+              <QuickStats scores={scores} />
+
+              {/* Comparison Graph */}
+              <div className="bg-white rounded-lg border p-4 mt-6 flex flex-col justify-between" style={{ minHeight: "200px" }}>
+                <h2 className="text-lg font-semibold mb-4">Comparison Graph</h2>
+                <p className="text-gray-500 mb-4">
+                  <span className="font-bold">You scored {scores.percentile}% percentile </span> 
+                  which is lower than the average percentile 72% of all the engineers who took this assessment
+                </p>
+                <ComparisonGraph percentile={scores.percentile} />
+              </div>
+            </div>
+            {/* Right Column */}
+            <div className="space-y-4 flex flex-col justify-between mt-6 lg:mt-14" style={{ minHeight: "400px" }}>
+              <SyllabusAnalysis />
+              <QuestionAnalysis score={scores.currentScore} />
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <UpdateScoresDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        onUpdate={handleUpdateScores}
+        initialScores={scores}
+      />
     </div>
-  );
+  )
 }
