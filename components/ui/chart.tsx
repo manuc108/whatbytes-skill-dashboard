@@ -11,4 +11,3 @@ interface ChartTooltipProps {
 export const ChartTooltip: React.FC<ChartTooltipProps> = ({ data }) => {
     return <div className="chart-tooltip">Tooltip: {data}</div>;
 };
-
