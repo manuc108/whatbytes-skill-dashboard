@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 interface UpdateScoresDialogProps {
   open: boolean
@@ -40,10 +41,11 @@ export function UpdateScoresDialog({
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold">Update scores</DialogTitle>
-            <img
+            <Image
               src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
               alt="HTML5"
-              className="h-12 w-12"
+              width={48}
+              height={48}
             />
           </div>
         </DialogHeader>
@@ -128,4 +130,5 @@ export function UpdateScoresDialog({
     </Dialog>
   )
 }
+
 
