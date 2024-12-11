@@ -1,6 +1,7 @@
 import React from "react";
+import { TooltipProps } from "recharts";
 
-export const ChartTooltip = ({ active, payload }: any) => {
+export const ChartTooltip: React.FC<TooltipProps<number, string>> = ({ active, payload }) => {
     if (active && payload && payload.length) {
         return (
             <div style={{ backgroundColor: "white", padding: "10px", border: "1px solid #ccc" }}>
@@ -11,3 +12,5 @@ export const ChartTooltip = ({ active, payload }: any) => {
 
     return null;
 };
+
+
