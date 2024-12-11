@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { UpdateScoresDialog } from "@/components/update-scores-dialog"
 import UserProfile from "@/components/user-profile"
 import { ComparisonGraph } from "@/components/comparision-graph"
+import Image from 'next/image'
 
 export default function Page() {
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -32,7 +33,8 @@ export default function Page() {
       {/* Top Navigation  */}
       <header className="fixed top-0 left-0 right-0 h-16 bg-white border-b z-50 flex items-center justify-between px-8">
         <div className="font-bold text-2xl flex items-center gap-2">
-          <span className="text-2xl">|||</span> WhatBytes
+          <span className="text-2xl font-normal">|||</span>
+          <span>WhatBytes</span>
         </div>
         <UserProfile
           name="Rahil Siddique"
@@ -53,10 +55,11 @@ export default function Page() {
               
               {/* HTML Test Header */}
               <div className="bg-white rounded-lg border p-4 mb-6 flex flex-wrap items-center gap-4">
-                <img
+                <Image
                   src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
                   alt="HTML5"
-                  className="h-12 w-12"
+                  width={48}
+                  height={48}
                 />
                 <div className="flex-1">
                   <h2 className="text-xl font-semibold">
@@ -69,7 +72,7 @@ export default function Page() {
                 </div>
                 <Button 
                   onClick={() => setDialogOpen(true)}
-                  className="bg-[#1E3A8A] hover:bg-[#1E3A8A]/90"
+                  className="bg-[#142683] hover:bg-[#142683]/90 text-white px-6"
                 >
                   Update
                 </Button>
